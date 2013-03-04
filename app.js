@@ -4,7 +4,7 @@ var app = require('http').createServer(handler)
 
 app.listen(3000);
 
-var clients = [];
+var clients = {};
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
@@ -20,11 +20,16 @@ function handler (req, res) {
 }
 
 io.sockets.on('connection', function (socket) {
-  clients.push(socket.id);
-});
 
-setTimeout(function(){
-    io.sockets.socket(clients[0]).emit("greeting", "Howdy, User 1!");
-    io.sockets.socket(clients[1]).emit("greeting", "Hey there, User 2");
-}, 5000);
-//
+  socket.on('add-user', function(data){
+    clients[data.username] = {
+      "socket": socket.id
+    };
+  });
+
+  socket.on('private-message', function(data){
+   console.log("Sending: " + data.content + " to " + data.username);
+   io.sockets.socket(clients[data.username].socket).emit("add-message", data);
+  });
+
+});
