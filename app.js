@@ -4,6 +4,8 @@ var app = require('http').createServer(handler)
 
 app.listen(3000);
 
+var clients = [];
+
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
   function (err, data) {
@@ -18,8 +20,11 @@ function handler (req, res) {
 }
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  clients.push(socket.id);
 });
+
+setTimeout(function(){
+    io.sockets.socket(clients[0]).emit("greeting", "Howdy, User 1!");
+    io.sockets.socket(clients[1]).emit("greeting", "Hey there, User 2");
+}, 5000);
+//
