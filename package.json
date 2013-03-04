@@ -1,0 +1,14 @@
+{
+  "name": "socket-example",
+  "version": "0.0.1",
+  "description": "ERROR: No README.md file found!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Michael Heap <m@michaelheap.com>",
+  "dependencies": {
+    "socket.io": "~0.9.13"
+  }
+}
