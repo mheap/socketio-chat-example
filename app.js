@@ -34,7 +34,6 @@ io.sockets.on('connection', function (socket) {
     } else {
       console.log("User does not exist: " + data.username); 
     }
-    }
   });
 
 });
