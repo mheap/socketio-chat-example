@@ -36,4 +36,17 @@ io.sockets.on('connection', function (socket) {
     }
   });
 
+  //Removing the socket on disconnect
+  socket.on('disconnect', function() {
+  	for(var name in clients) {
+  		if(clients[name].socket === socket.id) {
+  			delete clients[name];
+  			break;
+  		}
+  	}	
+  })
+
 });
+
+
+
