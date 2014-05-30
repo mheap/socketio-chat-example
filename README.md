@@ -1,9 +1,7 @@
 # socketio-chat-example
-=====================
 Simple example to demostrate socket.io 
 
 ## How to install ?
-===================
 
 Simply clone the repo and then install the dependencies 
 
