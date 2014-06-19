@@ -9,6 +9,6 @@
   "repository": "",
   "author": "Michael Heap <m@michaelheap.com>",
   "dependencies": {
-    "socket.io": "~0.9.13"
+    "socket.io": "*"
   }
 }

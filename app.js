@@ -28,9 +28,9 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('private-message', function(data){
-    console.log("Sending: " + data.content + " to " + data.username);
+   
     if (clients[data.username]){
-      io.sockets.socket(clients[data.username].socket).emit("add-message", data);
+      io.sockets.connected[clients[data.username].socket].emit("add-message", data);
     } else {
       console.log("User does not exist: " + data.username); 
     }
